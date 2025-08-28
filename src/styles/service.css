@@ -1,74 +1,12 @@
 .service-container {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-}
-
-/* HEADER SECTION */
-.service-header {
-  text-align: center;
-  padding: 6rem 2rem;
-  position: relative;
-  background: linear-gradient(135deg, rgba(74, 144, 226, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%);
-  border-radius: 40px;
-  margin-bottom: 4rem;
-  overflow: hidden;
-}
-
-.service-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
-  animation: float 20s ease-in-out infinite;
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-
-  33% {
-    transform: translate(30px, -30px) rotate(120deg);
-  }
-
-  66% {
-    transform: translate(-20px, 20px) rotate(240deg);
-  }
-}
-
-.service-title {
-  font-size: 4rem;
-  margin-bottom: 2rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #003355 0%, #4a90e2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.02em;
-  position: relative;
-  z-index: 2;
-}
-
-.service-subtitle {
-  font-size: 1.4rem;
-  color: #64748b;
-  font-weight: 500;
-  max-width: 900px;
-  margin: 0 auto;
-  line-height: 1.6;
-  position: relative;
-  z-index: 2;
+  background-color: white;
 }
 
 /* TIPOS DE RADIOGRAFIAS SECTION */
+
 .rx-types-section {
   background-color: white;
-  margin: 5rem 0;
-  padding: 7rem;
+  padding: 6rem;
 }
 
 .rx-types-title {
@@ -76,7 +14,7 @@
   font-weight: 800;
   text-align: center;
   margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
   color: #1a202c;
   background-clip: text;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -113,6 +51,7 @@
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+
 }
 
 .rx-type-card::before {
@@ -122,7 +61,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #4a90e2, #667eea);
+  background: linear-gradient(135deg, #4a90e2, #357abd);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -140,7 +79,7 @@
 .rx-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #4a90e2, #667eea);
+  background: linear-gradient(135deg, #4a90e2, #357abd);
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -170,133 +109,13 @@
   line-height: 1.5;
 }
 
-/* SERVICE SECTIONS */
-.service-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  margin: 4rem 0;
-  padding: 4rem;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(15px);
-  border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 20px 60px rgba(0, 51, 85, 0.08);
-  transition: all 0.5s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.service-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(74, 144, 226, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.service-section:hover::before {
-  opacity: 1;
-}
-
-.service-section:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 80px rgba(0, 51, 85, 0.12);
-}
-
-.service-section-reverse {
-  grid-template-columns: 1fr 1fr;
-}
-
-.service-section-reverse .service-content {
-  order: 2;
-}
-
-.service-section-reverse .service-image-container {
-  order: 1;
-}
-
-.service-content {
-  padding: 2rem;
-  position: relative;
-  z-index: 2;
-}
-
-.service-card-title {
-  font-size: 3rem;
-  background: linear-gradient(135deg, #003355 0%, #4a90e2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 2rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.service-card-description {
-  font-size: 1.3rem;
-  color: #475569;
-  line-height: 1.8;
-  margin-bottom: 3rem;
-  font-weight: 400;
-}
-
-.service-features {
-  list-style: none;
-  padding: 0;
-}
-
-.service-features li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #64748b;
-}
-
-.service-features li i {
-  color: #4a90e2;
-  margin-right: 1rem;
-  font-size: 1.2rem;
-}
-
-/* IMAGE CONTAINER */
-.service-image-container {
-  position: relative;
-  z-index: 2;
-}
-
-.service-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 30px;
-  box-shadow: 0 20px 50px rgba(0, 51, 85, 0.15);
-}
-
-.service-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.5s ease;
-}
-
-.service-image-wrapper:hover .service-image {
-  transform: scale(1.1);
-}
 
 /* STATS SECTION */
+
 .stats-section {
-  background: linear-gradient(135deg, #003355 0%, #4a90e2 100%);
-  border-radius: 40px;
+    background: linear-gradient(135deg, #004080 0%, #0059b3 100%);
   padding: 4rem 2rem;
-  margin: 5rem 0;
+  margin-bottom: 3rem;
   color: white;
   text-align: center;
 }
@@ -335,4 +154,92 @@
   font-size: 1.2rem;
   opacity: 0.9;
   font-weight: 500;
+}
+
+/* SERVICE SECTIONS */
+
+.service-section {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 0 6rem 6rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-section-reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.service-section-reverse .service-image-container {
+  order: 2;
+}
+
+.service-section-reverse .service-content {
+  order: 1;
+}
+
+.service-content {
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.service-card-title {
+  font-size: 3rem;
+  color: #003355;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.service-card-description {
+  font-size: 1.3rem;
+  color: #4a5568;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  text-align: justify;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+}
+
+.service-features li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+.service-features li i {
+  color: #4a90e2;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+/* IMAGE CONTAINER */
+
+.service-image-container {
+  position: relative;
+  z-index: 2;
+}
+
+.service-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -28,7 +28,6 @@ const servicesData = [
         features: [
             "Menor exposición a radiación",
             "Imágenes de alta resolución",
-            "Resultados inmediatos",
             "Interpretación profesional"
         ]
     },
@@ -40,7 +39,6 @@ const servicesData = [
         features: [
             "Equipos de alta precisión",
             "Interpretación inmediata",
-            "Personal especializado",
             "Estudios de reposo y esfuerzo"
         ]
     }
@@ -80,229 +78,73 @@ const rxTypes = [
     }
 ];
 
-// Componente ServiceCounter mejorado
-const ServiceCounter = () => {
-    const [counts, setCounts] = useState({
-        clients: 0,
-        radiographies: 0,
-        electrocardiograms: 0
-    });
-    const [isVisible, setIsVisible] = useState(false);
-    const [hasAnimated, setHasAnimated] = useState(false);
-    const counterRef = useRef(null);
+// Estadísticas
+const stats = [
+    { number: "5000+", label: "Estudios Realizados" },
+    { number: "98%", label: "Satisfacción del Cliente" },
+    { number: "24/7", label: "Disponibilidad" },
+    { number: "10+", label: "Años de Experiencia" }
+];
 
-    const targets = {
-        clients: 500,
-        radiographies: 600,
-        electrocardiograms: 200
-    };
+// Componente principal Service
+function Service() {
+    const [hasAnimated, setHasAnimated] = useState(false);
+    const statsRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.8 && !hasAnimated) {
-                    setIsVisible(true);
+                if (entry.isIntersecting && !hasAnimated) {
                     setHasAnimated(true);
+                    animateNumbers();
+                    // Desconectar el observer después de la primera animación
+                    observer.disconnect();
                 }
             },
-            {
-                threshold: 0.8,
-                rootMargin: '0px'
-            }
+            { threshold: 0.1 }
         );
 
-        if (counterRef.current) {
-            observer.observe(counterRef.current);
+        if (statsRef.current) {
+            observer.observe(statsRef.current);
         }
 
         return () => observer.disconnect();
     }, [hasAnimated]);
 
-    useEffect(() => {
-        if (!isVisible) return;
+    const animateNumbers = () => {
+        const numbers = document.querySelectorAll('.stat-number');
 
-        const duration = 2500;
-        const frameRate = 60;
-        const totalFrames = Math.round(duration / (1000 / frameRate));
-
-        Object.keys(targets).forEach(key => {
-            let currentFrame = 0;
-            const increment = targets[key] / totalFrames;
+        numbers.forEach(number => {
+            const finalNumber = number.textContent;
+            const numericValue = parseInt(finalNumber.replace(/\D/g, ''));
+            let currentNumber = 0;
+            const increment = numericValue / 50;
 
             const timer = setInterval(() => {
-                currentFrame++;
-                const progress = currentFrame / totalFrames;
-                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-                const currentValue = Math.round(easeOutQuart * targets[key]);
-
-                setCounts(prev => ({
-                    ...prev,
-                    [key]: currentValue
-                }));
-
-                if (currentFrame >= totalFrames) {
+                currentNumber += increment;
+                if (currentNumber >= numericValue) {
+                    number.textContent = finalNumber;
                     clearInterval(timer);
-                    setCounts(prev => ({
-                        ...prev,
-                        [key]: targets[key]
-                    }));
+                } else {
+                    if (finalNumber.includes('%')) {
+                        number.textContent = Math.floor(currentNumber) + '%';
+                    } else if (finalNumber.includes('+')) {
+                        number.textContent = Math.floor(currentNumber).toLocaleString() + '+';
+                    } else if (finalNumber.includes('/')) {
+                        number.textContent = finalNumber;
+                    } else {
+                        number.textContent = Math.floor(currentNumber).toLocaleString();
+                    }
                 }
-            }, 1000 / frameRate);
+            }, 50);
         });
-    }, [isVisible]);
+    };
 
-    return (
-        <div className="stats-container">
-            <div className="stats-background">
-                <div className="stats-grid" ref={counterRef}>
-                    <div className="stat-card">
-                        <div className="stat-icon">
-                            <div className="icon-circle clients">
-                                <span>👥</span>
-                            </div>
-                        </div>
-                        <div className="stat-number">+{counts.clients}</div>
-                        <div className="stat-label">Clientes Satisfechos</div>
-                        <div className="stat-bar">
-                            <div className="stat-fill clients-fill" style={{ width: isVisible ? '100%' : '0%' }}></div>
-                        </div>
-                    </div>
-
-                    <div className="stat-card">
-                        <div className="stat-icon">
-                            <div className="icon-circle radiographies">
-                                <span>🏥</span>
-                            </div>
-                        </div>
-                        <div className="stat-number">+{counts.radiographies}</div>
-                        <div className="stat-label">Radiografías</div>
-                        <div className="stat-bar">
-                            <div className="stat-fill radiographies-fill" style={{ width: isVisible ? '100%' : '0%' }}></div>
-                        </div>
-                    </div>
-
-                    <div className="stat-card">
-                        <div className="stat-icon">
-                            <div className="icon-circle electrocardiograms">
-                                <span>❤️</span>
-                            </div>
-                        </div>
-                        <div className="stat-number">+{counts.electrocardiograms}</div>
-                        <div className="stat-label">Electrocardiogramas</div>
-                        <div className="stat-bar">
-                            <div className="stat-fill electrocardiograms-fill" style={{ width: isVisible ? '100%' : '0%' }}></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// Componente MedicalCTA
-const MedicalCTA = () => {
-    const handleWhatsAppClick = () => {
-        const phoneNumber = "523231945292"
-        const message = "¡Hola! Quiero agendar, ¿Cuál es su disponibilidad?"
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-        window.open(whatsappUrl, "_blank")
-    }
-
-    return (
-        <section className="service-cta-section">
-            <div className="service-cta-grid">
-                <div className="service-cta-content">
-                    <h2 className="service-cta-title">
-                        Tu salud
-                        <span className="service-cta-accent"> no puede esperar</span>
-                    </h2>
-                    <p className="service-cta-description">
-                        Agenda tu estudio médico ahora y recibe atención inmediata con tecnología de vanguardia
-                    </p>
-                    <ul className="service-cta-benefits">
-                        <li className="service-cta-benefit">
-                            <svg className="service-cta-check-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <span className="service-cta-benefit-text">Resultados en menos de 24 horas</span>
-                        </li>
-                        <li className="service-cta-benefit">
-                            <svg className="service-cta-check-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <span className="service-cta-benefit-text">Equipo médico certificado</span>
-                        </li>
-                        <li className="service-cta-benefit">
-                            <svg className="service-cta-check-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <span className="service-cta-benefit-text">Sin filas, sin esperas</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div className="service-cta-contact">
-                    <div className="service-cta-contact-card">
-                        <div className="service-cta-icon">
-                            <div className="service-cta-icon-circle">
-                                <svg className="service-cta-phone-icon" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <h3 className="service-cta-contact-title">¡Contáctanos ahora!</h3>
-                        <p className="service-cta-contact-desc">
-                            Nuestro equipo está listo para atenderte y resolver todas tus dudas de forma inmediata.
-                        </p>
-                        <button className="service-cta-button" onClick={handleWhatsAppClick}>
-                            <svg className="service-cta-button-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                            </svg>
-                            <span>Agendar Ahora</span>
-                            <svg className="service-cta-button-arrow" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-};
-
-// Componente principal Service
-function Service() {
     return (
         <div className="service-container">
             <Carousel slides={slidesService} />
 
-            <header className="service-header">
-                <h1 className="service-title">
-                    Lo que ofrecemos
-                </h1>
-                <p className="service-subtitle">
-                    Cuidamos tu salud con estudios radiográficos y electrocardiogramas confiables,
-                    acompañados de interpretación profesional y tecnología de vanguardia.
-                </p>
-            </header>
-
-            {/* Nueva sección de tipos de RX */}
+            {/* Sección de tipos de RX */}
             <section className="rx-types-section">
                 <h2 className="rx-types-title">Tipos de Estudios Disponibles</h2>
                 <div className="rx-types-grid">
@@ -318,7 +160,22 @@ function Service() {
                 </div>
             </section>
 
-            {/* Servicios principales con características mejoradas */}
+            {/* Sección de estadísticas */}
+            <div ref={statsRef} className="stats-section">
+                <h2 className="stats-title">Nuestra Experiencia en Números</h2>
+                <p className="stats-subtitle">Años de experiencia cuidando tu salud</p>
+
+                <div className="stats-grid">
+                    {stats.map((stat, index) => (
+                        <div key={index} className="stat-item">
+                            <div className="stat-number">{stat.number}</div>
+                            <div className="stat-label">{stat.label}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Sección de servicios principales */}
             {servicesData.map((service, index) => (
                 <div
                     key={service.id}
@@ -356,7 +213,6 @@ function Service() {
                     </div>
                 </div>
             ))}
-
         </div>
     );
 }
