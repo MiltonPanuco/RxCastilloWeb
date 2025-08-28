@@ -1,0 +1,1122 @@
+/* ANIMATIONS */
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* BASE CONTAINER */
+
+.gallery-container {
+    background-color: white;
+    color: #ffffff;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.gallery-main {
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* BACKGROUND EFFECTS & FLOATING ELEMENTS */
+
+.background-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-element-1,
+.floating-element-2,
+.floating-element-3,
+.floating-element-4,
+.floating-element-5,
+.floating-element-6 {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.floating-element-1 {
+    top: 10%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(108, 92, 231, 0.08));
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-element-2 {
+    top: 60%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, rgba(255, 99, 132, 0.08), rgba(255, 159, 64, 0.08));
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+.floating-element-3 {
+    bottom: 20%;
+    left: 20%;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(75, 192, 192, 0.08), rgba(54, 162, 235, 0.08));
+    animation: float 7s ease-in-out infinite;
+}
+
+.floating-element-4 {
+    top: 30%;
+    right: 40%;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(153, 102, 255, 0.08), rgba(255, 159, 64, 0.08));
+    animation: float 9s ease-in-out infinite reverse;
+}
+
+.floating-element-5 {
+    top: 75%;
+    right: 30%;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, rgba(255, 206, 84, 0.08), rgba(255, 118, 117, 0.08));
+    animation: float 10s ease-in-out infinite;
+}
+
+.floating-element-6 {
+    top: 45%;
+    left: 5%;
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, rgba(163, 230, 53, 0.08), rgba(46, 213, 115, 0.08));
+    animation: float 11s ease-in-out infinite reverse;
+}
+
+/* HEADER SECTION */
+
+.gallery-header {
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.gallery-title {
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+    font-weight: 800;
+    color: #1a202c;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.gallery-title::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #4a90e2;
+    border-radius: 2px;
+}
+
+.gallery-subtitle {
+    font-size: 1.3rem;
+    color: #4a5568;
+    font-weight: 400;
+    margin-top: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* TOOL SECTIONS */
+
+.tool-section {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 3rem auto 6rem auto;
+    max-width: 1200px;
+    width: 90%;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(0, 51, 85, 0.03) 0%, rgba(74, 85, 104, 0.02) 100%);
+    border-radius: 30px;
+    border: 1px solid rgba(0, 51, 85, 0.15);
+    box-shadow:
+        0 10px 40px rgba(0, 51, 85, 0.08),
+        0 2px 8px rgba(0, 51, 85, 0.04);
+
+    transition: all 0.4s ease;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.tool-section:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 20px 60px rgba(0, 51, 85, 0.12),
+        0 8px 16px rgba(0, 51, 85, 0.08);
+    border-color: rgba(0, 51, 85, 0.25);
+}
+
+.tool-section-reverse {
+    flex-direction: row-reverse;
+}
+
+.tool-content {
+    flex: 1;
+    padding: 2rem;
+    min-width: 0;
+}
+
+.tool-title {
+    font-size: 2.5rem;
+    color: #003355;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tool-description {
+    font-size: 1.2rem;
+    color: #4a5568;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    text-align: justify;
+}
+
+/* TOOL IMAGES */
+
+.tool-image-container {
+    flex: 1;
+    min-width: 0;
+}
+
+.tool-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 51, 85, 0.15);
+    border: 1px solid rgba(0, 51, 85, 0.1);
+}
+
+
+.tool-image-background {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.tool-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s ease;
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0px);
+}
+
+.tool-image-transitioning {
+    opacity: 0;
+    filter: blur(3px);
+    transform: scale(1.02);
+}
+
+.tool-image-loaded {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+}
+
+.tool-image-container {
+    position: relative;
+}
+
+.tool-image-crossfade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tool-image-crossfade.active {
+    opacity: 1;
+    position: relative;
+}
+
+/* MODAL OVERLAY & CONTENT */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: linear-gradient(135deg, #2a2a3e 0%, #26324e 100%);
+    backdrop-filter: blur(30px);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+}
+
+.modal-image-container {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-image-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #2a2a3e 0%, #26324e 100%);
+    width: 100%;
+    height: calc(100% - 80px);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 15px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-image-transitioning {
+    opacity: 0.3;
+    filter: blur(3px);
+    transform: scale(0.95);
+}
+
+/* MODAL CONTROLS */
+
+.modal-close-button {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 59, 48, 0.7), rgba(255, 105, 97, 0.7));
+    box-shadow: 0 4px 20px rgba(255, 59, 48, 0.2);
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 12;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.modal-close-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(255, 59, 48, 0.8), rgba(255, 105, 97, 0.8));
+    box-shadow: 0 6px 25px rgba(255, 59, 48, 0.3);
+}
+
+.modal-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 12;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.modal-nav-button:focus {
+    outline: none;
+}
+
+.modal-nav-button:hover {
+    color: #2196f3;
+}
+
+.modal-nav-button-prev {
+    left: 1rem;
+}
+
+.modal-nav-button-next {
+    right: 1rem;
+}
+
+.modal-counter {
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-counter-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* BODY SCROLL CONTROL */
+
+body.body-no-scroll {
+    overflow: hidden !important;
+}
+
+body.body-scroll {
+    overflow: auto !important;
+}
+
+/* MEMORIES SECTION */
+
+.memories-section {
+    margin-top: 6rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.memories-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.memories-title {
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+    font-weight: 800;
+    color: #1a202c;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.memories-title::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #4a90e2;
+    border-radius: 2px;
+}
+
+.memories-subtitle {
+    font-size: 1.3rem;
+    color: #4a5568;
+    font-weight: 400;
+    margin-top: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* MEMORIES CAROUSEL */
+
+.memories-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 3rem 0;
+    mask: linear-gradient(
+        to right, 
+        transparent 0%, 
+        black 5%, 
+        black 95%, 
+        transparent 100%
+    );
+    -webkit-mask: linear-gradient(
+        to right, 
+        transparent 0%, 
+        black 5%, 
+        black 95%, 
+        transparent 100%
+    );
+}
+
+.memories-carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    animation: slideRightToLeft 60s linear infinite;
+    width: fit-content;
+    padding: 2rem 0;
+}
+
+.memories-carousel-container:hover .memories-carousel-track {
+    animation-play-state: paused;
+}
+
+.memory-carousel-item {
+    flex-shrink: 0;
+    width: 350px;
+    height: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(0, 51, 85, 0.1),
+        0 2px 6px rgba(0, 51, 85, 0.06);
+    transition: all 0.4s ease;
+    position: relative;
+    background: linear-gradient(135deg, rgba(0, 51, 85, 0.02) 0%, rgba(74, 85, 104, 0.01) 100%);
+    border: 1px solid rgba(0, 51, 85, 0.1);
+    cursor: pointer;
+}
+
+.memory-carousel-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 15px 40px rgba(0, 51, 85, 0.15),
+        0 5px 12px rgba(0, 51, 85, 0.1);
+    border-color: rgba(0, 51, 85, 0.2);
+    z-index: 2;
+}
+
+.memory-carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.memory-carousel-item:hover .memory-carousel-image {
+    transform: scale(1.05);
+}
+
+@keyframes slideRightToLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 479px) {
+    .gallery-header {
+        padding: 2rem 1rem;
+    }
+
+    .gallery-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .gallery-title::after {
+        width: 50px;
+        height: 2px;
+        bottom: -12px;
+    }
+
+    .gallery-subtitle {
+        font-size: 0.95rem;
+        margin-top: 1.5rem;
+        padding: 0 0.5rem;
+        line-height: 1.5;
+    }
+
+    .tools-section-wrapper {
+        padding: 0 1rem;
+    }
+
+    .tool-section {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 1.5rem auto 3rem auto;
+        width: 100%;
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .tool-section-reverse {
+        flex-direction: column;
+    }
+
+    .tool-content {
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .tool-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+
+    .tool-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+
+    .tool-image-wrapper {
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .tool-image-background {
+        height: 220px;
+    }
+
+    .memories-section {
+        margin-top: 3rem;
+        padding: 1rem;
+    }
+
+    .memories-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .memories-title::after {
+        width: 50px;
+        height: 2px;
+        bottom: -12px;
+    }
+
+    .memories-subtitle {
+        font-size: 0.95rem;
+        margin-top: 1.5rem;
+        padding: 0 0.5rem;
+        line-height: 1.5;
+    }
+
+    .memory-carousel-item {
+        width: 230px;
+        height: 160px;
+        border-radius: 10px;
+    }
+
+    .memories-carousel-track {
+        gap: 0.8rem;
+        animation: slideRightToLeft 30s linear infinite;
+        padding: 1.5rem 0;
+    }
+
+    .modal-image-container {
+        width: 95vw;
+        height: 80vh;
+    }
+
+    .modal-image-wrapper {
+        padding: 1rem 0.5rem;
+        height: calc(100% - 50px);
+    }
+
+    .modal-close-button {
+        width: 40px;
+        height: 40px;
+        top: 0.8rem;
+        right: 0.8rem;
+        font-size: 16px;
+    }
+
+    .modal-nav-button {
+        padding: 0.3rem;
+    }
+
+    .modal-nav-button-prev {
+        left: 0.3rem;
+    }
+
+    .modal-nav-button-next {
+        right: 0.3rem;
+    }
+
+    .modal-counter {
+        height: 50px;
+        padding: 0.8rem;
+    }
+
+    .modal-counter-text {
+        font-size: 0.85rem;
+    }
+
+    .background-effects,
+    .floating-element-1,
+    .floating-element-2,
+    .floating-element-3,
+    .floating-element-4,
+    .floating-element-5,
+    .floating-element-6 {
+        display: none;
+    }
+}
+
+/* Mobile Grande - min-width: 480px */
+@media (min-width: 480px) {
+    .gallery-title {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+
+    .gallery-title::after {
+        width: 55px;
+        bottom: -15px;
+    }
+
+    .gallery-subtitle {
+        font-size: 1rem;
+        margin-top: 2rem;
+        line-height: 1.6;
+    }
+
+    .tool-title {
+        font-size: 1.75rem;
+    }
+
+    .tool-description {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .tool-image-background {
+        height: 250px;
+    }
+
+    .memories-title {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+
+    .memories-title::after {
+        width: 55px;
+        bottom: -15px;
+    }
+
+    .memories-subtitle {
+        font-size: 1rem;
+        margin-top: 2rem;
+        line-height: 1.6;
+    }
+
+    .memory-carousel-item {
+        width: 260px;
+        height: 180px;
+        border-radius: 12px;
+    }
+
+    .memories-carousel-track {
+        gap: 1rem;
+        animation: slideRightToLeft 35s linear infinite;
+    }
+
+    .modal-close-button {
+        width: 45px;
+        height: 45px;
+        top: 1rem;
+        right: 1rem;
+        font-size: 18px;
+    }
+
+    .modal-counter {
+        height: 55px;
+        padding: 1rem;
+    }
+
+    .modal-counter-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet - min-width: 768px */
+@media (min-width: 768px) {
+    .gallery-header {
+        padding: 3rem 1.5rem;
+    }
+
+    .gallery-title {
+        font-size: 2.75rem;
+        margin-bottom: 30px;
+    }
+
+    .gallery-title::after {
+        width: 65px;
+        bottom: -18px;
+    }
+
+    .gallery-subtitle {
+        font-size: 1.1rem;
+        margin-top: 2.5rem;
+        max-width: 700px;
+        line-height: 1.7;
+    }
+
+    .tools-section-wrapper {
+        padding: 0 1.5rem;
+    }
+
+    .tool-section {
+        flex-direction: column;
+        gap: 2rem;
+        margin: 2rem auto 4rem auto;
+        width: 95%;
+        padding: 2rem;
+        border-radius: 18px;
+    }
+
+    .tool-section-reverse {
+        flex-direction: column;
+    }
+
+    .tool-content {
+        padding: 1.5rem 1rem;
+        text-align: center;
+    }
+
+    .tool-title {
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .tool-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 1.8rem;
+        text-align: left;
+    }
+
+    .tool-image-wrapper {
+        max-width: 450px;
+        border-radius: 16px;
+    }
+
+    .tool-image-background {
+        height: 300px;
+    }
+
+    .memories-section {
+        margin-top: 4rem;
+        padding: 1.5rem;
+    }
+
+    .memories-title {
+        font-size: 2.75rem;
+        margin-bottom: 30px;
+    }
+
+    .memories-title::after {
+        width: 65px;
+        bottom: -18px;
+    }
+
+    .memories-subtitle {
+        font-size: 1.1rem;
+        margin-top: 2.5rem;
+        max-width: 700px;
+        line-height: 1.7;
+    }
+
+    .memory-carousel-item {
+        width: 300px;
+        height: 210px;
+        border-radius: 13px;
+    }
+
+    .memories-carousel-track {
+        gap: 1.5rem;
+        animation: slideRightToLeft 50s linear infinite;
+    }
+
+    .modal-image-container {
+        width: 90vw;
+        height: 85vh;
+    }
+
+    .modal-image-wrapper {
+        padding: 2.5rem 1.5rem;
+        height: calc(100% - 70px);
+    }
+
+    .modal-close-button {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+
+    .modal-counter {
+        height: 70px;
+        padding: 1.2rem;
+    }
+
+    .modal-counter-text {
+        font-size: 1rem;
+    }
+
+    .background-effects {
+        display: block;
+    }
+
+    .floating-element-1,
+    .floating-element-2,
+    .floating-element-3 {
+        display: block;
+    }
+
+    .floating-element-4,
+    .floating-element-5,
+    .floating-element-6 {
+        display: none;
+    }
+
+    .floating-element-1 {
+        width: 70px;
+        height: 70px;
+    }
+
+    .floating-element-2 {
+        width: 100px;
+        height: 100px;
+    }
+
+    .floating-element-3 {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Desktop/Laptop - min-width: 1024px */
+@media (min-width: 1024px) {
+    .gallery-title {
+        font-size: 3rem;
+    }
+
+    .gallery-subtitle {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+
+    .tool-section {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+        margin: 3rem auto 5rem auto;
+        padding: 2.5rem;
+        border-radius: 25px;
+    }
+
+    .tool-section-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .tool-content {
+        text-align: left;
+        padding: 2rem;
+    }
+
+    .tool-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .tool-description {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .tool-image-wrapper {
+        max-width: 500px;
+        border-radius: 20px;
+    }
+
+    .tool-image-background {
+        height: 350px;
+    }
+
+    .memories-title {
+        font-size: 3rem;
+    }
+
+    .memories-subtitle {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+
+    .memory-carousel-item {
+        width: 330px;
+        height: 230px;
+    }
+
+    .background-effects {
+        display: block;
+    }
+
+    .floating-element-1,
+    .floating-element-2,
+    .floating-element-3,
+    .floating-element-4 {
+        display: block;
+    }
+
+    .floating-element-5,
+    .floating-element-6 {
+        display: none;
+    }
+}
+
+/* Desktop Grande - min-width: 1200px */
+@media (min-width: 1200px) {
+    .gallery-header {
+        padding: 4rem 2rem;
+    }
+
+    .gallery-title {
+        font-size: 3.2rem;
+        margin-bottom: 35px;
+    }
+
+    .gallery-title::after {
+        width: 75px;
+        height: 3px;
+        bottom: -22px;
+    }
+
+    .gallery-subtitle {
+        font-size: 1.25rem;
+        margin-top: 3rem;
+        max-width: 800px;
+        line-height: 1.8;
+    }
+
+    .tool-section {
+        max-width: 1200px;
+        margin: 3rem auto 6rem auto;
+        gap: 3.5rem;
+        padding: 3rem;
+    }
+
+    .tool-title {
+        font-size: 2.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tool-description {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+    }
+
+    .tool-image-wrapper {
+        max-width: 550px;
+    }
+
+    .tool-image-background {
+        height: 380px;
+    }
+
+    .memories-title {
+        font-size: 3.2rem;
+        margin-bottom: 35px;
+    }
+
+    .memories-title::after {
+        width: 75px;
+        height: 3px;
+        bottom: -22px;
+    }
+
+    .memories-subtitle {
+        font-size: 1.25rem;
+        margin-top: 3rem;
+        max-width: 800px;
+        line-height: 1.8;
+    }
+
+    .memory-carousel-item {
+        width: 350px;
+        height: 250px;
+        border-radius: 15px;
+    }
+
+    .memories-carousel-track {
+        gap: 2rem;
+        animation: slideRightToLeft 60s linear infinite;
+    }
+
+    .floating-element-1,
+    .floating-element-2,
+    .floating-element-3,
+    .floating-element-4,
+    .floating-element-5 {
+        display: block;
+    }
+
+    .floating-element-6 {
+        display: none;
+    }
+}
+
