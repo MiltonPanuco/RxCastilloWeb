@@ -113,7 +113,7 @@
 /* STATS SECTION */
 
 .stats-section {
-    background: linear-gradient(135deg, #004080 0%, #0059b3 100%);
+  background: linear-gradient(135deg, #004080 0%, #0059b3 100%);
   padding: 4rem 2rem;
   margin-bottom: 3rem;
   color: white;
@@ -242,4 +242,455 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Mobile Pequeño - max-width: 479px */
+@media (max-width: 479px) {
+  .rx-types-section {
+    padding: 3rem 1rem;
+  }
+
+  .rx-types-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+
+  .rx-types-title::after {
+    width: 50px;
+    height: 2px;
+    bottom: -12px;
+  }
+
+  .rx-types-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .rx-type-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .rx-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .rx-type-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .rx-type-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .stats-section {
+    padding: 3rem 1rem;
+  }
+
+  .stats-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .stats-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+  }
+
+  .service-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem 3rem 1rem;
+  }
+
+  .service-section-reverse .service-image-container {
+    order: 1;
+  }
+
+  .service-section-reverse .service-content {
+    order: 2;
+  }
+
+  .service-content {
+    padding: 1rem 0;
+  }
+
+  .service-card-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .service-card-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-features li {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-image-wrapper {
+    height: 220px;
+    border-radius: 12px;
+  }
+}
+
+/* Mobile Grande - min-width: 480px */
+@media (min-width: 480px) {
+  .rx-types-title {
+    font-size: 2.2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .rx-types-title::after {
+    width: 55px;
+    bottom: -15px;
+  }
+
+  .rx-types-section {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .rx-type-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .rx-type-title {
+    font-size: 1.2rem;
+  }
+
+  .rx-type-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .stats-title {
+    font-size: 2rem;
+  }
+
+  .stats-subtitle {
+    font-size: 1rem;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+  }
+
+  .service-section {
+    padding: 0 1.5rem 3.5rem 1.5rem;
+  }
+
+  .service-card-title {
+    font-size: 1.75rem;
+  }
+
+  .service-card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .service-features li {
+    font-size: 1rem;
+  }
+
+  .service-image-wrapper {
+    height: 250px;
+  }
+}
+
+/* Tablet - min-width: 768px */
+@media (min-width: 768px) {
+  .rx-types-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .rx-types-title {
+    font-size: 2.75rem;
+    margin-bottom: 4rem;
+  }
+
+  .rx-types-title::after {
+    width: 65px;
+    bottom: -18px;
+  }
+
+  .rx-types-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .rx-type-card {
+    padding: 2rem;
+  }
+
+  .rx-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+
+  .rx-type-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .rx-type-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .stats-section {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .stats-title {
+    font-size: 2.2rem;
+  }
+
+  .stats-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .stat-number {
+    font-size: 3.2rem;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+  }
+
+  .service-section {
+    padding: 0 2rem 4rem 2rem;
+  }
+
+  .service-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .service-card-title {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .service-card-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+  }
+
+  .service-features li {
+    font-size: 1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .service-image-wrapper {
+    height: 300px;
+    border-radius: 16px;
+  }
+}
+
+/* Desktop/Laptop - min-width: 1024px - DISEÑO BASE ORIGINAL */
+@media (min-width: 1024px) {
+  .rx-types-section {
+    padding: 6rem;
+  }
+
+  .rx-types-title {
+    font-size: 3.5rem;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+  }
+
+  .rx-types-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .rx-type-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .rx-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .rx-type-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .rx-type-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .stats-section {
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .stats-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stats-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .stat-number {
+    font-size: 3.5rem;
+  }
+
+  .stat-label {
+    font-size: 1.2rem;
+  }
+
+  .service-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 0 6rem 6rem 6rem;
+  }
+
+  .service-section-reverse .service-image-container {
+    order: 2;
+  }
+
+  .service-section-reverse .service-content {
+    order: 1;
+  }
+
+  .service-content {
+    padding: 2rem;
+  }
+
+  .service-card-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-card-description {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .service-features li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-image-wrapper {
+    height: 400px;
+    border-radius: 30px;
+  }
+}
+
+/* Desktop Grande - min-width: 1200px */
+@media (min-width: 1200px) {
+  .rx-types-section {
+    padding: 6rem;
+  }
+
+  .rx-types-title {
+    font-size: 3.5rem;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+  }
+
+  .rx-types-title::after {
+    width: 100px;
+    height: 4px;
+    bottom: -10px;
+  }
+
+  .stats-section {
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .stats-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stats-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-section {
+    gap: 4rem;
+    padding: 0 6rem 6rem 6rem;
+  }
+
+  .service-content {
+    padding: 2rem;
+  }
+
+  .service-card-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-card-description {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .service-features li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-image-wrapper {
+    height: 400px;
+    border-radius: 30px;
+  }
 }

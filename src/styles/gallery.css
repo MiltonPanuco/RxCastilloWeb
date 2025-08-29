@@ -29,82 +29,6 @@
     min-height: 100vh;
 }
 
-/* BACKGROUND EFFECTS & FLOATING ELEMENTS */
-
-.background-effects {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.floating-element-1,
-.floating-element-2,
-.floating-element-3,
-.floating-element-4,
-.floating-element-5,
-.floating-element-6 {
-    position: absolute;
-    border-radius: 50%;
-}
-
-.floating-element-1 {
-    top: 10%;
-    left: 10%;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(108, 92, 231, 0.08));
-    animation: float 6s ease-in-out infinite;
-}
-
-.floating-element-2 {
-    top: 60%;
-    right: 15%;
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(135deg, rgba(255, 99, 132, 0.08), rgba(255, 159, 64, 0.08));
-    animation: float 8s ease-in-out infinite reverse;
-}
-
-.floating-element-3 {
-    bottom: 20%;
-    left: 20%;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, rgba(75, 192, 192, 0.08), rgba(54, 162, 235, 0.08));
-    animation: float 7s ease-in-out infinite;
-}
-
-.floating-element-4 {
-    top: 30%;
-    right: 40%;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, rgba(153, 102, 255, 0.08), rgba(255, 159, 64, 0.08));
-    animation: float 9s ease-in-out infinite reverse;
-}
-
-.floating-element-5 {
-    top: 75%;
-    right: 30%;
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, rgba(255, 206, 84, 0.08), rgba(255, 118, 117, 0.08));
-    animation: float 10s ease-in-out infinite;
-}
-
-.floating-element-6 {
-    top: 45%;
-    left: 5%;
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(135deg, rgba(163, 230, 53, 0.08), rgba(46, 213, 115, 0.08));
-    animation: float 11s ease-in-out infinite reverse;
-}
-
 /* HEADER SECTION */
 
 .gallery-header {
@@ -147,56 +71,46 @@
 /* TOOL SECTIONS */
 
 .tool-section {
-    display: flex;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
     align-items: center;
-    gap: 3rem;
-    margin: 3rem auto 6rem auto;
-    max-width: 1200px;
-    width: 90%;
-    padding: 3rem;
-    background: linear-gradient(135deg, rgba(0, 51, 85, 0.03) 0%, rgba(74, 85, 104, 0.02) 100%);
-    border-radius: 30px;
-    border: 1px solid rgba(0, 51, 85, 0.15);
-    box-shadow:
-        0 10px 40px rgba(0, 51, 85, 0.08),
-        0 2px 8px rgba(0, 51, 85, 0.04);
-
-    transition: all 0.4s ease;
     position: relative;
-    box-sizing: border-box;
-}
-
-.tool-section:hover {
-    transform: translateY(-5px);
-    box-shadow:
-        0 20px 60px rgba(0, 51, 85, 0.12),
-        0 8px 16px rgba(0, 51, 85, 0.08);
-    border-color: rgba(0, 51, 85, 0.25);
+    overflow: hidden;
 }
 
 .tool-section-reverse {
-    flex-direction: row-reverse;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tool-section-reverse .tool-image-container {
+    order: 2;
+}
+
+.tool-section-reverse .tool-content {
+    order: 1;
 }
 
 .tool-content {
-    flex: 1;
     padding: 2rem;
-    min-width: 0;
+    position: relative;
+    z-index: 2;
 }
 
 .tool-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #003355;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
+    margin-bottom: 2rem;
+    font-weight: 800;
     line-height: 1.2;
 }
 
 .tool-description {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #4a5568;
     line-height: 1.8;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     font-weight: 400;
     text-align: justify;
 }
@@ -204,28 +118,25 @@
 /* TOOL IMAGES */
 
 .tool-image-container {
-    flex: 1;
-    min-width: 0;
+    position: relative;
+    z-index: 2;
 }
 
 .tool-image-wrapper {
     position: relative;
     width: 100%;
-    max-width: 550px;
-    margin: 0 auto;
-    border-radius: 25px;
+    height: 400px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 51, 85, 0.15);
-    border: 1px solid rgba(0, 51, 85, 0.1);
+    border-radius: 30px;
 }
-
 
 .tool-image-background {
     position: relative;
     width: 100%;
-    height: 380px;
+    height: 100%;
     overflow: hidden;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-radius: 30px;
 }
 
 .tool-image {
@@ -252,10 +163,6 @@
     opacity: 1;
     filter: blur(0px);
     transform: scale(1);
-}
-
-.tool-image-container {
-    position: relative;
 }
 
 .tool-image-crossfade {
@@ -487,20 +394,16 @@ body.body-scroll {
     overflow: hidden;
     position: relative;
     margin: 3rem 0;
-    mask: linear-gradient(
-        to right, 
-        transparent 0%, 
-        black 5%, 
-        black 95%, 
-        transparent 100%
-    );
-    -webkit-mask: linear-gradient(
-        to right, 
-        transparent 0%, 
-        black 5%, 
-        black 95%, 
-        transparent 100%
-    );
+    mask: linear-gradient(to right,
+            transparent 0%,
+            black 5%,
+            black 95%,
+            transparent 100%);
+    -webkit-mask: linear-gradient(to right,
+            transparent 0%,
+            black 5%,
+            black 95%,
+            transparent 100%);
 }
 
 .memories-carousel-track {
@@ -522,7 +425,7 @@ body.body-scroll {
     height: 250px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 
+    box-shadow:
         0 8px 25px rgba(0, 51, 85, 0.1),
         0 2px 6px rgba(0, 51, 85, 0.06);
     transition: all 0.4s ease;
@@ -534,7 +437,7 @@ body.body-scroll {
 
 .memory-carousel-item:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 
+    box-shadow:
         0 15px 40px rgba(0, 51, 85, 0.15),
         0 5px 12px rgba(0, 51, 85, 0.1);
     border-color: rgba(0, 51, 85, 0.2);
@@ -556,6 +459,7 @@ body.body-scroll {
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(-50%);
     }
@@ -590,16 +494,17 @@ body.body-scroll {
     }
 
     .tool-section {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 1.5rem;
-        margin: 1.5rem auto 3rem auto;
-        width: 100%;
-        padding: 1.5rem;
-        border-radius: 12px;
+        padding: 0 1rem 1.5rem 1rem;
     }
 
-    .tool-section-reverse {
-        flex-direction: column;
+    .tool-section-reverse .tool-image-container {
+        order: 1;
+    }
+
+    .tool-section-reverse .tool-content {
+        order: 2;
     }
 
     .tool-content {
@@ -621,12 +526,13 @@ body.body-scroll {
     }
 
     .tool-image-wrapper {
-        max-width: 100%;
         border-radius: 12px;
+        height: 220px;
     }
 
     .tool-image-background {
-        height: 220px;
+        height: 100%;
+        border-radius: 12px;
     }
 
     .memories-section {
@@ -703,16 +609,6 @@ body.body-scroll {
     .modal-counter-text {
         font-size: 0.85rem;
     }
-
-    .background-effects,
-    .floating-element-1,
-    .floating-element-2,
-    .floating-element-3,
-    .floating-element-4,
-    .floating-element-5,
-    .floating-element-6 {
-        display: none;
-    }
 }
 
 /* Mobile Grande - min-width: 480px */
@@ -733,6 +629,10 @@ body.body-scroll {
         line-height: 1.6;
     }
 
+    .tool-section {
+        padding: 0 1.5rem 2rem 1.5rem;
+    }
+
     .tool-title {
         font-size: 1.75rem;
     }
@@ -742,7 +642,7 @@ body.body-scroll {
         line-height: 1.6;
     }
 
-    .tool-image-background {
+    .tool-image-wrapper {
         height: 250px;
     }
 
@@ -819,16 +719,7 @@ body.body-scroll {
     }
 
     .tool-section {
-        flex-direction: column;
-        gap: 2rem;
-        margin: 2rem auto 4rem auto;
-        width: 95%;
-        padding: 2rem;
-        border-radius: 18px;
-    }
-
-    .tool-section-reverse {
-        flex-direction: column;
+        padding: 0 2rem 2.5rem 2rem;
     }
 
     .tool-content {
@@ -852,9 +743,6 @@ body.body-scroll {
     .tool-image-wrapper {
         max-width: 450px;
         border-radius: 16px;
-    }
-
-    .tool-image-background {
         height: 300px;
     }
 
@@ -915,37 +803,6 @@ body.body-scroll {
     .modal-counter-text {
         font-size: 1rem;
     }
-
-    .background-effects {
-        display: block;
-    }
-
-    .floating-element-1,
-    .floating-element-2,
-    .floating-element-3 {
-        display: block;
-    }
-
-    .floating-element-4,
-    .floating-element-5,
-    .floating-element-6 {
-        display: none;
-    }
-
-    .floating-element-1 {
-        width: 70px;
-        height: 70px;
-    }
-
-    .floating-element-2 {
-        width: 100px;
-        height: 100px;
-    }
-
-    .floating-element-3 {
-        width: 60px;
-        height: 60px;
-    }
 }
 
 /* Desktop/Laptop - min-width: 1024px */
@@ -960,16 +817,17 @@ body.body-scroll {
     }
 
     .tool-section {
-        flex-direction: row;
-        align-items: center;
-        gap: 3rem;
-        margin: 3rem auto 5rem auto;
-        padding: 2.5rem;
-        border-radius: 25px;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        padding: 0 6rem 3rem 6rem;
     }
 
-    .tool-section-reverse {
-        flex-direction: row-reverse;
+    .tool-section-reverse .tool-image-container {
+        order: 2;
+    }
+
+    .tool-section-reverse .tool-content {
+        order: 1;
     }
 
     .tool-content {
@@ -991,9 +849,6 @@ body.body-scroll {
     .tool-image-wrapper {
         max-width: 500px;
         border-radius: 20px;
-    }
-
-    .tool-image-background {
         height: 350px;
     }
 
@@ -1009,22 +864,6 @@ body.body-scroll {
     .memory-carousel-item {
         width: 330px;
         height: 230px;
-    }
-
-    .background-effects {
-        display: block;
-    }
-
-    .floating-element-1,
-    .floating-element-2,
-    .floating-element-3,
-    .floating-element-4 {
-        display: block;
-    }
-
-    .floating-element-5,
-    .floating-element-6 {
-        display: none;
     }
 }
 
@@ -1054,9 +893,9 @@ body.body-scroll {
 
     .tool-section {
         max-width: 1200px;
-        margin: 3rem auto 6rem auto;
+        margin: 3rem auto 3rem auto;
         gap: 3.5rem;
-        padding: 3rem;
+        padding: 0 6rem 3rem 6rem;
     }
 
     .tool-title {
@@ -1072,9 +911,6 @@ body.body-scroll {
 
     .tool-image-wrapper {
         max-width: 550px;
-    }
-
-    .tool-image-background {
         height: 380px;
     }
 
@@ -1106,17 +942,4 @@ body.body-scroll {
         gap: 2rem;
         animation: slideRightToLeft 60s linear infinite;
     }
-
-    .floating-element-1,
-    .floating-element-2,
-    .floating-element-3,
-    .floating-element-4,
-    .floating-element-5 {
-        display: block;
-    }
-
-    .floating-element-6 {
-        display: none;
-    }
 }
-
