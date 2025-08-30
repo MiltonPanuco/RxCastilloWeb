@@ -6,7 +6,7 @@ import '../styles/gallery.css';
 
 const slidesGallery = [
   {
-    image: "/public/images/gallery/carousel/image1.jpeg",
+    image: "/public/images/gallery/carousel/image1.jpg",
     title: "Recuerdos Digitales",
   },
   {
