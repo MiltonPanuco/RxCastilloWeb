@@ -22,7 +22,7 @@ export default function Navbar() {
 
         if (location.pathname === "/terms-conditions" || location.pathname === "/privacy-policy") {
             setScrolled(true);
-            return; 
+            return;
         }
 
         const handleScroll = () => {
@@ -39,9 +39,9 @@ export default function Navbar() {
         <nav className={`navbar ${scrolled ? "scrolled" : "transparent"} nav-extra`}>
             <div className="navbar-content">
                 <div className="navbar-logo" onClick={closeMenu}>
-                    <a href="/home">
+                    <Link to="/home">
                         <img src={logo} alt="RX Castillo Digital" />
-                    </a>
+                    </Link>
                 </div>
 
                 <div
@@ -54,11 +54,11 @@ export default function Navbar() {
                 </div>
 
                 <ul className={`navbar-menu ${menuOpen ? "active" : ""}`}>
-                    <li><a href="/home" onClick={closeMenu}>Inicio</a></li>
-                    <li><a href="/aboutus" onClick={closeMenu}>Conócenos</a></li>
-                    <li><a href="/service" onClick={closeMenu}>Servicios</a></li>
-                    <li><a href="/gallery" onClick={closeMenu}>Galería</a></li>
-                    <li><a href="/contact" onClick={closeMenu}>Contacto</a></li>
+                    <li><Link to="/home" onClick={closeMenu}>Inicio</Link></li>
+                    <li><Link to="/aboutus" onClick={closeMenu}>Conócenos</Link></li>
+                    <li><Link to="/service" onClick={closeMenu}>Servicios</Link></li>
+                    <li><Link to="/gallery" onClick={closeMenu}>Galería</Link></li>
+                    <li><Link to="/contact" onClick={closeMenu}>Contacto</Link></li>
 
                     {menuOpen && (
                         <li className="navbar-social">

@@ -6,15 +6,15 @@ import '../styles/gallery.css';
 
 const slidesGallery = [
   {
-    image: "/public/images/gallery/carousel/image1.jpg",
+    image: "/images/gallery/carousel/image1.jpg",
     title: "Recuerdos Digitales",
   },
   {
-    image: "/public/images/gallery/carousel/image2.jpg",
+    image: "/images/gallery/carousel/image2.jpg",
     title: "Nuestro Equipo",
   },
   {
-    image: "/public/images/gallery/carousel/image3.jpg",
+    image: "/images/gallery/carousel/image3.jpg",
     title: "Fotografías",
   },
 ];
@@ -26,14 +26,14 @@ const Gallery = () => {
       title: "Detector - Flat Panel",
       description: "El flat panel inalámbrico de SIUI es un detector digital de silicio amorfo de alto rendimiento, ideal para radiología humana y veterinaria. Su diseño liviano y compatible con generadores portátiles lo hace perfecto para aplicaciones móviles. Junto con el software de imagen de SIUI, ofrece alta calidad diagnóstica y una solución integral en radiología digital.",
       images: [
-        "/public/images/gallery/panel/panel1.jpeg",
-        "/public/images/gallery/panel/panel2.jpg",
-        "/public/images/gallery/panel/panel3.jpeg",
-        "/public/images/gallery/panel/panel4.jpg",
-        "/public/images/gallery/panel/panel5.jpeg",
-        "/public/images/gallery/panel/panel6.jpg",
-        "/public/images/gallery/panel/panel7.jpeg",
-        "/public/images/gallery/panel/panel8.jpeg"
+        "/images/gallery/panel/panel1.jpeg",
+        "/images/gallery/panel/panel2.jpg",
+        "/images/gallery/panel/panel3.jpeg",
+        "/images/gallery/panel/panel4.jpg",
+        "/images/gallery/panel/panel5.jpeg",
+        "/images/gallery/panel/panel6.jpg",
+        "/images/gallery/panel/panel7.jpeg",
+        "/images/gallery/panel/panel8.jpeg"
       ]
     },
     {
@@ -41,12 +41,12 @@ const Gallery = () => {
       title: "Tubo de Rayos X / SR-8100S",
       description: "El SR-8100S es un generador portátil de rayos X de alta frecuencia, ideal para aplicaciones médicas y veterinarias. Funciona con batería recargable, ofrece hasta 300 exposiciones por carga y cuenta con diseño compacto, colimador con luz LED o láser, y controles digitales precisos. Su portabilidad y rendimiento lo hacen perfecto para uso en campo o emergencias.",
       images: [
-        "/public/images/gallery/camara/camara1.jpeg",
-        "/public/images/gallery/camara/camara2.jpg",
-        "/public/images/gallery/camara/camara3.jpeg",
-        "/public/images/gallery/camara/camara4.jpeg",
-        "/public/images/gallery/camara/camara5.jpeg",
-        "/public/images/gallery/camara/camara6.jpg"
+        "/images/gallery/camara/camara1.jpeg",
+        "/images/gallery/camara/camara2.jpg",
+        "/images/gallery/camara/camara3.jpeg",
+        "/images/gallery/camara/camara4.jpeg",
+        "/images/gallery/camara/camara5.jpeg",
+        "/images/gallery/camara/camara6.jpg"
       ]
     },
     {
@@ -54,22 +54,22 @@ const Gallery = () => {
       title: "Electrocardiograma de 12 canales",
       description: "El SONOECG12000 es un electrocardiógrafo de 12 canales que ofrece registros precisos y confiables de la actividad cardíaca. Su diseño portátil, pantalla clara y opciones de impresión lo convierten en una herramienta práctica y eficiente para diagnósticos rápidos en consultorios y hospitales.",
       images: [
-        "/public/images/gallery/electro/electro1.jpg",
-        "/public/images/gallery/electro/electro2.jpg",
-        "/public/images/gallery/electro/electro3.jpg",
-        "/public/images/gallery/electro/electro4.jpg",
-        "/public/images/gallery/electro/electro5.jpeg"
+        "/images/gallery/electro/electro1.jpg",
+        "/images/gallery/electro/electro2.jpg",
+        "/images/gallery/electro/electro3.jpg",
+        "/images/gallery/electro/electro4.jpg",
+        "/images/gallery/electro/electro5.jpeg"
       ]
     }
   ];
 
   const memoriesImages = [
-    "/public/images/gallery/recuerdos/image1.png",
-    "/public/images/gallery/recuerdos/image2.jpg",
-    "/public/images/gallery/recuerdos/image3.jpg",
-    "/public/images/gallery/recuerdos/image4.jpg",
-    "/public/images/gallery/recuerdos/image5.jpg",
-    "/public/images/gallery/recuerdos/image6.jpg",
+    "/images/gallery/recuerdos/image1.png",
+    "/images/gallery/recuerdos/image2.jpg",
+    "/images/gallery/recuerdos/image3.jpg",
+    "/images/gallery/recuerdos/image4.jpg",
+    "/images/gallery/recuerdos/image5.jpg",
+    "/images/gallery/recuerdos/image6.jpg",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState({});
@@ -307,6 +307,7 @@ const Gallery = () => {
             onMouseLeave={() => setMemoriesCarouselPaused(false)}
           >
             <div className="memories-carousel-track">
+              
               {/* Primera copia de las imágenes */}
               {memoriesImages.map((image, index) => (
                 <div key={`original-${index}`} className="memory-carousel-item">
@@ -318,6 +319,7 @@ const Gallery = () => {
                   />
                 </div>
               ))}
+              
               {/* Segunda copia para loop infinito */}
               {memoriesImages.map((image, index) => (
                 <div key={`duplicate-${index}`} className="memory-carousel-item">

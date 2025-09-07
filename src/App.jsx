@@ -13,12 +13,16 @@ import Contact from "./components/contact";
 import Gallery from "./components/gallery"; 
 import Footer from "./components/footer"; 
 
+import ScrollToTop from "./components/scrolltotop";
+
 import TermsAndConditions from "./components/terms-conditions"; 
 import PrivacyPolicy from "./components/privacy-policy"; 
 
 export default function App() {
   return (
+
     <Router>
+      <ScrollToTop />
       <Loading />
       <Navbar />
       <Carousel />
