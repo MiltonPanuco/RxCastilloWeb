@@ -14,7 +14,7 @@ const Loading = ({ onComplete }) => {
             const exitDelay = setTimeout(() => {
                 // Reactivar scroll justo antes de desaparecer
                 document.body.style.overflow = "auto";
-                onComplete();
+                // onComplete();
             }, 600);
 
             return () => clearTimeout(exitDelay);

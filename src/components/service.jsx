@@ -5,15 +5,15 @@ import '../styles/service.css';
 // Datos del carousel
 const slidesService = [
     {
-        image: "/public/images/service/carousel/image1.png",
+        image: "/images/service/carousel/image1.png",
         title: "Nuestros Servicios",
     },
     {
-        image: "/public/images/service/carousel/image2.jpg",
+        image: "/images/service/carousel/image2.jpg",
         title: "Rayos X Digital movil a domicilio",
     },
     {
-        image: "/public/images/service/carousel/image3.jpg",
+        image: "/images/service/carousel/image3.jpg",
         title: "Electrocardiogramas de 12 Canales portatil",
     },
 ];
@@ -24,7 +24,7 @@ const servicesData = [
         id: 1,
         title: "Rayos X",
         description: "Ofrecemos servicios completos de radiografía digital con tecnología de última generación. Realizamos estudios de tórax para evaluación pulmonar y cardíaca, radiografías de brazos incluyendo húmero, radio y cúbito, estudios de cráneo para diagnóstico neurológico, y radiografías de todas las extremidades y articulaciones. Nuestro equipo especializado garantiza imágenes de alta calidad con la menor exposición a radiación posible.",
-        image: "/public/images/service/other/rayosx.jpg",
+        image: "/images/service/other/rayosx.jpg",
         features: [
             "Menor exposición a radiación",
             "Imágenes de alta resolución",
@@ -35,7 +35,7 @@ const servicesData = [
         id: 2,
         title: "Electrocardiogramas",
         description: "Realizamos electrocardiogramas (ECG) completos para el diagnóstico y seguimiento de condiciones cardíacas. Nuestro servicio incluye ECG en reposo de 12 derivaciones, interpretación inmediata por cardiólogos certificados, y detección temprana de arritmias, infartos y otras patologías cardíacas. Utilizamos equipos digitales de alta precisión que proporcionan resultados confiables para un diagnóstico preciso del estado de su salud cardiovascular.",
-        image: "/public/images/service/other/electro.jpg",
+        image: "/images/service/other/electro.jpg",
         features: [
             "Equipos de alta precisión",
             "Interpretación inmediata",

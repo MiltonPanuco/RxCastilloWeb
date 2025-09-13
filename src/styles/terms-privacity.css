@@ -1,7 +1,7 @@
 .privacy-terms-container {
     position: relative;
     min-height: 100vh;
-    background-image: url("/public/images/privacy-conditions/image.jpeg");
+    background-image: url("/images/privacy-conditions/image.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

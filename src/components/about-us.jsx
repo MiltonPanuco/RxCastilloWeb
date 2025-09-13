@@ -4,15 +4,15 @@ import '../styles/about-us.css';
 
 const slidesAbout = [
     {
-        image: "/public/images/about-us/carousel/image1.jpg",
+        image: "/images/about-us/carousel/image1.jpg",
         title: "¿Quiénes Somos?",
     },
     {
-        image: "/public/images/about-us/carousel/image2.jpg",
+        image: "/images/about-us/carousel/image2.jpg",
         title: "Trabajando desde 2005",
     },
     {
-        image: "/public/images/about-us/carousel/image3.jpeg",
+        image: "/images/about-us/carousel/image3.jpeg",
         title: "Detrás de todo servicio, hay personas",
     },
 ];
@@ -27,7 +27,7 @@ function AboutUs() {
                 <div className="history-content">
                     <div className="history-image">
                         <img
-                            src="/public/images/about-us/ptr-richard-castillo.jpeg"
+                            src="/images/about-us/ptr-richard-castillo.jpeg"
                             alt="Ptr. Richard Castillo Martinez - Fundador de RX Castillo Digital"
                             className="founder-photo"
                         />
@@ -155,19 +155,19 @@ function AboutUs() {
             </section>
 
             {/* Sección de valores y filosofía */}
-            <section class="values-section">
-                <div class="values-container">
-                    <div class="values-header">
-                        <h2 class="values-title">Lo Que Nos Define</h2>
-                        <p class="values-subtitle">
+            <section className="values-section">
+                <div className="values-container">
+                    <div className="values-header">
+                        <h2 className="values-title">Lo Que Nos Define</h2>
+                        <p className="values-subtitle">
                             Más que un negocio, somos una familia comprometida con el crecimiento y desarrollo de nuestra comunidad, trabajando día a día para brindar el mejor servicio y crear vínculos duraderos con cada cliente.
                         </p>
                     </div>
 
-                    <div class="values-grid">
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <div class="icon-wrapper">
+                    <div className="values-grid">
+                        <div className="value-card">
+                            <div className="value-icon">
+                                <div className="icon-wrapper">
                                     <span>🎯</span>
                                 </div>
                             </div>
@@ -178,9 +178,9 @@ function AboutUs() {
                             </p>
                         </div>
 
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <div class="icon-wrapper">
+                        <div className="value-card">
+                            <div className="value-icon">
+                                <div className="icon-wrapper">
                                     <span>👁️</span>
                                 </div>
                             </div>
@@ -191,9 +191,9 @@ function AboutUs() {
                             </p>
                         </div>
 
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <div class="icon-wrapper">
+                        <div className="value-card">
+                            <div className="value-icon">
+                                <div className="icon-wrapper">
                                     <span>❤️</span>
                                 </div>
                             </div>

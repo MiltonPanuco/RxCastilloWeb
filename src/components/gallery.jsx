@@ -303,8 +303,6 @@ const Gallery = () => {
 
           <div
             className="memories-carousel-container"
-            onMouseEnter={() => setMemoriesCarouselPaused(true)}
-            onMouseLeave={() => setMemoriesCarouselPaused(false)}
           >
             <div className="memories-carousel-track">
               
