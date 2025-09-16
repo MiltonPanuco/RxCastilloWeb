@@ -65,11 +65,13 @@ const Gallery = () => {
 
   const memoriesImages = [
     "/images/gallery/recuerdos/image1.png",
-    "/images/gallery/recuerdos/image2.jpg",
+    "/images/gallery/recuerdos/image2.jpeg",
     "/images/gallery/recuerdos/image3.jpg",
     "/images/gallery/recuerdos/image4.jpg",
     "/images/gallery/recuerdos/image5.jpg",
-    "/images/gallery/recuerdos/image6.jpg",
+    "/images/gallery/recuerdos/image6.jpeg",
+    "/images/gallery/recuerdos/image7.jpeg",
+
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState({});
@@ -305,7 +307,7 @@ const Gallery = () => {
             className="memories-carousel-container"
           >
             <div className="memories-carousel-track">
-              
+
               {/* Primera copia de las imágenes */}
               {memoriesImages.map((image, index) => (
                 <div key={`original-${index}`} className="memory-carousel-item">
@@ -317,7 +319,7 @@ const Gallery = () => {
                   />
                 </div>
               ))}
-              
+
               {/* Segunda copia para loop infinito */}
               {memoriesImages.map((image, index) => (
                 <div key={`duplicate-${index}`} className="memory-carousel-item">
