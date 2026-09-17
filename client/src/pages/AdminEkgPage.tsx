@@ -139,12 +139,12 @@ export default function AdminEkgPage() {
     }
   };
 
-  const downloadPdf = () => {
+  const downloadPdf = async () => {
     if (!validate()) return;
     setBusy("pdf");
     setStatus({ kind: "neutral", text: "Preparando el archivo PDF…" });
     try {
-      downloadEkgPdf(values);
+      await downloadEkgPdf(values);
       setStatus({ kind: "success", text: "Archivo PDF descargado." });
     } catch (error) {
       console.error(error);
@@ -355,7 +355,7 @@ export default function AdminEkgPage() {
                 </button>
                 <button
                   type="button"
-                  onClick={downloadPdf}
+                  onClick={() => void downloadPdf()}
                   disabled={Boolean(busy)}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#1a446c] px-6 text-sm font-bold text-[#1a446c] transition hover:bg-[#f6f4ee] disabled:cursor-not-allowed disabled:opacity-50"
                 >

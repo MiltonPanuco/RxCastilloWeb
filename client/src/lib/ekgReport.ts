@@ -45,7 +45,12 @@ declare global {
         file: (
           path: string,
           content?: string
-        ) => { async: (type: "string") => Promise<string> } | null;
+        ) => {
+          async: {
+            (type: "string"): Promise<string>;
+            (type: "uint8array"): Promise<Uint8Array>;
+          };
+        } | null;
         generateAsync: (options: {
           type: "blob";
           mimeType: string;
@@ -331,110 +336,213 @@ export function downloadBlob(blob: Blob, filename: string) {
   window.setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
 
-export function downloadEkgPdf(values: EkgValues) {
-  const document = new jsPDF({ unit: "mm", format: "a4" });
+type PdfTemplateAssets = { background: string; signature: string };
+let pdfAssetsPromise: Promise<PdfTemplateAssets> | null = null;
+
+function bytesToDataUrl(bytes: Uint8Array, mimeType: string) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(new Blob([bytes as BlobPart], { type: mimeType }));
+  });
+}
+
+function loadPdfTemplateAssets() {
+  pdfAssetsPromise ??= (async () => {
+    await loadEkgAssets();
+    if (!window.JSZip || !window.RX_EKG_TEMPLATE) {
+      throw new Error("La plantilla Word no está disponible.");
+    }
+    const zip = await window.JSZip.loadAsync(
+      base64ToBytes(window.RX_EKG_TEMPLATE)
+    );
+    const backgroundFile = zip.file("word/media/image1.png");
+    const signatureFile = zip.file("word/media/image2.jpeg");
+    if (!backgroundFile || !signatureFile) {
+      throw new Error("La plantilla Word no contiene sus imágenes originales.");
+    }
+    const [background, signature] = await Promise.all([
+      backgroundFile.async("uint8array"),
+      signatureFile.async("uint8array"),
+    ]);
+    return {
+      background: await bytesToDataUrl(background, "image/png"),
+      signature: await bytesToDataUrl(signature, "image/jpeg"),
+    };
+  })();
+  return pdfAssetsPromise;
+}
+
+export async function downloadEkgPdf(values: EkgValues) {
+  const assets = await loadPdfTemplateAssets();
+  const document = new jsPDF({ unit: "mm", format: "letter" });
   const pageWidth = document.internal.pageSize.getWidth();
   const pageHeight = document.internal.pageSize.getHeight();
-  const margin = 18;
-  const contentWidth = pageWidth - margin * 2;
-  let y = 0;
+  const tableX = 53.4;
+  const tableY = 84.7;
+  const tableWidth = 108.9;
+  const columnWidth = tableWidth / 2;
+  const rowHeight = 6.75;
+  const rowBaselines = [88.9, 95.6, 102.4, 109.1, 115.9, 122.7, 129.5];
+  const tableLabels = [
+    "Ritmo",
+    "Frecuencia Cardiaca",
+    "Eje eléctrico de QRS T y P",
+    "Onda P",
+    "Intervalo PR",
+    "Complejo QRS",
+    "Intervalo QT",
+  ];
+  const tableCenter = 135.3;
 
-  const header = () => {
-    document.setFillColor(9, 40, 66);
-    document.rect(0, 0, pageWidth, 34, "F");
-    document.setTextColor(255, 255, 255);
-    document.setFont("helvetica", "bold");
-    document.setFontSize(15);
-    document.text("RX CASTILLO DIGITAL", margin, 14);
-    document.setFont("helvetica", "normal");
-    document.setFontSize(9);
-    document.text("Reporte de electrocardiograma", margin, 21);
-    document.setDrawColor(212, 175, 55);
-    document.setLineWidth(0.8);
-    document.line(margin, 27, pageWidth - margin, 27);
-    y = 44;
-  };
-
-  const ensureSpace = (height: number) => {
-    if (y + height <= pageHeight - 18) return;
-    document.addPage();
-    header();
-  };
-
-  const sectionTitle = (title: string) => {
-    ensureSpace(13);
-    document.setTextColor(26, 68, 108);
-    document.setFont("helvetica", "bold");
-    document.setFontSize(9);
-    document.text(title.toUpperCase(), margin, y);
-    document.setDrawColor(212, 175, 55);
-    document.line(margin, y + 2.5, pageWidth - margin, y + 2.5);
-    y += 9;
-  };
-
-  const row = (label: string, value: string) => {
-    const lines = document.splitTextToSize(value || "—", contentWidth - 48);
-    const height = Math.max(9, lines.length * 5 + 4);
-    ensureSpace(height);
-    document.setFontSize(9.5);
-    document.setFont("helvetica", "bold");
-    document.setTextColor(22, 58, 89);
-    document.text(label, margin, y + 4);
-    document.setFont("helvetica", "normal");
-    document.setTextColor(74, 85, 104);
-    document.text(lines, margin + 48, y + 4);
-    document.setDrawColor(219, 226, 233);
-    document.line(margin, y + height - 1, pageWidth - margin, y + height - 1);
-    y += height;
-  };
-
-  const paragraph = (title: string, value: string) => {
-    sectionTitle(title);
-    const lines = document.splitTextToSize(value || "—", contentWidth);
-    document.setFont("helvetica", "normal");
-    document.setFontSize(10);
-    document.setTextColor(74, 85, 104);
-    for (const line of lines) {
-      ensureSpace(6);
-      document.text(line, margin, y);
-      y += 5.5;
-    }
-    y += 5;
-  };
-
-  header();
-  sectionTitle("Paciente");
-  row("Nombre", values.PACIENTE);
-  row("Edad", values.EDAD);
-  row("Fecha", values.FECHA);
-  y += 4;
-  sectionTitle("Parámetros del EKG");
-  row("Ritmo", values.RITMO);
-  row("Frecuencia", values.FRECUENCIA);
-  row("Onda P", values.ONDA_P);
-  row(
-    "Ejes",
-    `QRS: ${values.EJE_QRS} / T: ${values.EJE_T} / P: ${values.EJE_P}`
+  document.addImage(
+    assets.background,
+    "PNG",
+    0,
+    0,
+    pageWidth,
+    pageHeight,
+    undefined,
+    "FAST"
   );
-  row("Intervalo PR", values.PR);
-  row("Complejo QRS", values.QRS);
-  row("Intervalo QT", values.QT);
-  y += 4;
-  paragraph("Interpretación", values.INTERPRETACION);
-  paragraph("Conclusiones", values.CONCLUSION);
+  document.setTextColor(0, 0, 0);
+  document.setFont("helvetica", "bold");
+  document.setFontSize(12);
+  document.text("PACIENTE:", 25.4, 58.8);
+  document.text("A QUIEN CORRESPONDA", 127.7, 58.8);
+  document.text("EDAD:", 25.4, 70.4);
+  document.text("ESTUDIO: ELECTROCARDIOGRAMA", 25.4, 76.7);
+  document.text("FECHA", 127.7, 70.4);
 
-  const pages = document.getNumberOfPages();
-  for (let page = 1; page <= pages; page += 1) {
-    document.setPage(page);
-    document.setFont("helvetica", "normal");
-    document.setFontSize(8);
-    document.setTextColor(110, 120, 132);
-    document.text(
-      `RX Castillo Digital · Página ${page} de ${pages}`,
-      margin,
-      pageHeight - 9
+  const fittedText = (
+    text: string,
+    x: number,
+    y: number,
+    maxWidth: number,
+    align: "left" | "center" = "left"
+  ) => {
+    let fontSize = 12;
+    document.setFont("helvetica", "bold");
+    document.setFontSize(fontSize);
+    while (fontSize > 7 && document.getTextWidth(text) > maxWidth) {
+      fontSize -= 0.5;
+      document.setFontSize(fontSize);
+    }
+    document.text(text, x, y, { align });
+  };
+
+  fittedText(values.PACIENTE, 25.4, 64.8, 88);
+  fittedText(values.EDAD, 40.5, 70.4, 34);
+  fittedText(values.FECHA, 144.5, 70.4, 41);
+
+  document.setLineWidth(0.18);
+  document.setDrawColor(0, 0, 0);
+  for (let row = 0; row < 7; row += 1) {
+    document.setFillColor(166, 166, 166);
+    document.rect(
+      tableX,
+      tableY + row * rowHeight,
+      columnWidth,
+      rowHeight,
+      "FD"
+    );
+    document.setFillColor(217, 217, 217);
+    document.rect(
+      tableX + columnWidth,
+      tableY + row * rowHeight,
+      columnWidth,
+      rowHeight,
+      "FD"
+    );
+    fittedText(
+      tableLabels[row],
+      tableX + columnWidth / 2,
+      rowBaselines[row],
+      columnWidth - 3,
+      "center"
     );
   }
 
-  document.save(`EKG_${safeReportFilename(values.PACIENTE)}.pdf`);
+  const tableValues = [
+    values.RITMO,
+    values.FRECUENCIA,
+    `QRS: ${values.EJE_QRS} / T: ${values.EJE_T} / P: ${values.EJE_P}`,
+    values.ONDA_P,
+    values.PR,
+    values.QRS,
+    values.QT,
+  ];
+  tableValues.forEach((value, index) => {
+    fittedText(
+      value,
+      tableCenter,
+      rowBaselines[index],
+      columnWidth - 3,
+      "center"
+    );
+  });
+
+  let page = 1;
+  let y = 148;
+  const addBlankPage = () => {
+    document.addPage("letter", "portrait");
+    page += 1;
+    y = 25.4;
+  };
+  const writeLines = (
+    text: string,
+    fontSize: number,
+    bold: boolean,
+    lineHeight: number
+  ) => {
+    document.setFont("helvetica", bold ? "bold" : "normal");
+    document.setFontSize(fontSize);
+    document.setTextColor(0, 0, 0);
+    const lines = document.splitTextToSize(text, 165) as string[];
+    for (const line of lines) {
+      const limit = page === 1 ? 190 : 250;
+      if (y + lineHeight > limit) addBlankPage();
+      document.text(line, 25.4, y);
+      y += lineHeight;
+    }
+  };
+
+  writeLines(values.INTERPRETACION, 13, false, 5.6);
+  y += 7;
+  if (y + 12 > (page === 1 ? 190 : 250)) addBlankPage();
+  document.setFont("helvetica", "bold");
+  document.setFontSize(13);
+  document.text("Conclusiones:", 25.4, y);
+  y += 8;
+  writeLines(values.CONCLUSION, 12, true, 5.3);
+  y += 1;
+
+  if (y + 48 > (page === 1 ? 252 : 265)) addBlankPage();
+  const signatureWidth = 41;
+  const signatureHeight = 23.2;
+  document.addImage(
+    assets.signature,
+    "JPEG",
+    (pageWidth - signatureWidth) / 2,
+    y,
+    signatureWidth,
+    signatureHeight,
+    undefined,
+    "FAST"
+  );
+  y += signatureHeight + 9;
+  document.setFont("helvetica", "bold");
+  document.setFontSize(12);
+  document.text("DR. ALEJANDRO VALADEZ JASSO", pageWidth / 2, y, {
+    align: "center",
+  });
+  y += 10;
+  document.text("CARDIOLOGO CLINICO E INTERVENCIONISTA", pageWidth / 2, y, {
+    align: "center",
+  });
+
+  const blob = document.output("blob");
+  downloadBlob(blob, `EKG_${safeReportFilename(values.PACIENTE)}.pdf`);
+  return blob;
 }
